@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = "devpi-rss",
-    version = "1.0.1",
+    version = "1.0.2",
     long_description=open("README.rst").read(),
     description="A plug-in for devpi-server which generates RSS feeds.",
     author='k-bu',
