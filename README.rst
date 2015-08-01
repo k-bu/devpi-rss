@@ -21,7 +21,7 @@ Installation
 
 .. code::
 
-   T.b.d. (pip install devpi-rss)
+   pip install devpi-rss
 
 When the devpi-server gets started without a custom theme (without passing the ``--theme``
 parameter), then no further configuration is required, since devpi-rss overwrites the
