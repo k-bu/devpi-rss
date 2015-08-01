@@ -1,3 +1,3 @@
 Plugin for devpi-server which generates RSS feeds.
 
-![Screenshot](screenshot.png)
+![alt tag](screenshot.png "Screenshot")
