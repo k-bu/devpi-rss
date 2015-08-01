@@ -2,9 +2,10 @@ from setuptools import setup
 
 setup(
     name = "devpi-rss",
-    version = "1.0.3",
-    long_description=open("README.rst").read(),
-    description="A plug-in for devpi-server which generates an RSS feed for every index.",
+    version = "1.0.4",
+    description="A plug-in for devpi-server which generates RSS feeds for indices.",
+    long_description=open("README.rst").read() + '\n\n' +
+                     open("HISTORY.rst").read(),
 
     author="k-bu",
     url="https://github.com/k-bu/devpi-rss",
@@ -26,5 +27,6 @@ setup(
         "PyRSS2Gen",
         ],
     packages=["devpi_rss"],
+    include_package_data=True,
     entry_points = {"devpi_server": ["devpi-rss=devpi_rss.main"]},
 )
