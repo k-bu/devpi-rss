@@ -1,0 +1,23 @@
+<metal:rss define-macro="rss">
+    <a tal:condition="python:(view.func_name == 'index_get')
+                      and not (context.username=='root' and context.index=='pypi')
+                      and context.stage.ixconfig['rss_active']"
+       tal:attributes="href python:'%s/%s/%s/+rss' % (context.request.host_url, context.username, context.index)"
+       style="background-color: #ff8800;
+              color: white;
+              text-shadow: 1px 1px 1px #555555;
+              font-size: 12px;
+              position: absolute;
+              right: 110px;
+              box-sizing: border-box;
+              border-radius: 3px;
+              padding: 3px 5px 3px 5px;">rss</a>
+</metal:rss>
+
+<metal:statusbadge define-macro="statusbadge">
+    <a class="statusbadge ${request.status_info.status}"
+       href="${request.status_info.url}">
+        ${request.status_info.short_msg}
+    </a>
+    <metal:rss use-macro="request.macros['rss']" />
+</metal:statusbadge>
