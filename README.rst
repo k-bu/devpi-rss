@@ -8,10 +8,34 @@ devpi-rss is a plug-in for `devpi-server <http://doc.devpi.net>`_ which generate
    :alt: Screenshot
    :target: center
 
+Requirements
+============
+
+.. code::
+
+   devpi-server >= 2.2.2
+   devpi-web >= 2.4.0
+
+Installation
+============
+
+.. code::
+
+   T.b.d. (pip install devpi-rss)
+
+.. important::
+
+   When the devpi-server gets started without a custom theme (without passing the "--theme"
+   parameter), then no further configuration is required, since devpi-rss overwrites the
+   :file:`templates/macro.pt` of the default theme in order to make the RSS button visible. If you
+   use a custom theme, then you have to manually apply the content of
+   :file:`devpi-rss/templates/macro.pt` into your theme.
+
 Usage
 =====
 
-An RSS feed can be activated or deactivated for every single index:
+By default every single index generates its own RSS feed, but an RSS feed can be activated or
+deactivated by modifying the regarding index property:
 
 .. code::
 

@@ -104,7 +104,7 @@ def devpiserver_on_upload(stage, projectname, version, link):
     """
     debug("devpiserver_on_upload called")
     debug("projectname=%s, version=%s, link=%s" % (projectname, version, link))
-    if ("rss_active" not in stage.ixconfig) or (stage.ixconfig["rss_active"] not in [True, "True"]):
+    if ("rss_active" in stage.ixconfig) and (stage.ixconfig["rss_active"] in [False, "False"]):
         debug("rss not active for this index")
         return
 
