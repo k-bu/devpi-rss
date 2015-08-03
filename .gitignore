@@ -1,3 +1,10 @@
 *.pyc
+*.wpr
+*.wpu
 /*.egg-info
+/*.json
+/bin
 /dist
+/Include
+/Lib
+/Scripts
