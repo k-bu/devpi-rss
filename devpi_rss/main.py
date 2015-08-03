@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 import datetime
 import os
 import pickle
+from pkg_resources import resource_filename
 from pyramid.response import FileResponse, Response
 import PyRSS2Gen
 from StringIO import StringIO
@@ -68,19 +69,16 @@ def devpiserver_pyramid_configure(config, pyramid_config):
     pyramid_config.add_view(get_rss, route_name="get_rss")
 
 
-def devpi_web_devpiserver_pyramid_configure(config, pyramid_config):
+def devpiserver_cmdline_run(xom):
     """
-    Monkey patches devpi_web.main.devpiserver_pyramid_configure
-    so it uses the small devpi_rss theme customization by default
+    Return an integer with a success code (0 == no errors) if you handle the command line
+    invocation, otherwise None. When the first plugin returns an integer, the remaining plugins
+    are not called.
     """
-    if not config.args.theme:
-        config.args.theme = os.path.dirname(__file__)
-        info("auto set web 'theme' to %s" % config.args.theme)
-    _devpi_web_devpiserver_pyramid_configure(config, pyramid_config)
-
-from devpi_web import main as devpi_web_main
-_devpi_web_devpiserver_pyramid_configure = devpi_web_main.devpiserver_pyramid_configure
-devpi_web_main.devpiserver_pyramid_configure = devpi_web_devpiserver_pyramid_configure
+    if xom.config.args.theme is None:
+        # use the small devpi_rss theme customization by default
+        xom.config.args.theme = resource_filename(__package__, "")
+        info("auto set web 'theme' to %s" % xom.config.args.theme)
 
 
 def devpiserver_on_upload_sync(log, application_url, stage, projectname, version):
