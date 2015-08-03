@@ -1,5 +1,10 @@
+<metal:head define-macro="headcss" use-macro="request.macros['original-headcss']">
+    <metal:mycss fill-slot="headcss">
+        <link rel="stylesheet" type="text/css" href="${request.theme_static_url('style.css')}" />
+    </metal:mycss>
+</metal:head>
+
 <metal:rss define-macro="rss">
-    <link rel="stylesheet" type="text/css" href="${request.theme_static_url('style.css')}" />
     <a tal:condition="python:hasattr(view, 'func_name') and
                       (view.func_name == 'index_get')
                       and not (context.username=='root' and context.index=='pypi')
