@@ -4,6 +4,7 @@
 /*.egg-info
 /*.json
 /bin
+/build
 /dist
 /Include
 /Lib
