@@ -27,6 +27,7 @@ setup(
         "PyRSS2Gen",
         ],
     packages=["devpi_rss"],
+    zip_safe=False,
     include_package_data=True,
     entry_points={"devpi_server": ["devpi-rss=devpi_rss"]},
 )
