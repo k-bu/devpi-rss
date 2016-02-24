@@ -68,27 +68,27 @@ def devpiserver_cmdline_run(xom):
         info("auto set web 'theme' to %s" % xom.config.args.theme)
 
 
-def devpiserver_on_upload_sync(log, application_url, stage, projectname, version):
+def devpiserver_on_upload_sync(log, application_url, stage, project, version):
     """
     Called after release upload. Mainly to implement plugins which trigger external services like
     Jenkins to do something upon upload.
     """
     global server_url
     debug("devpiserver_pyramid_configure called")
-    debug("application_url=%s, projectname=%s, version=%s" %
-          (application_url, projectname, version))
+    debug("application_url=%s, project=%s, version=%s" %
+          (application_url, project, version))
     server_url = application_url
 
 
-def devpiserver_on_upload(stage, projectname, version, link):
+def devpiserver_on_upload(stage, project, version, link):
     """
-    Called when a file is uploaded to a private stage for a projectname/version.
+    Called when a file is uploaded to a private stage for a project/version.
     link.entry.file_exists() may be false because a more recent revision deleted the file (and files
     are not revisioned). NOTE that this hook is currently NOT called for the implicit "caching"
     uploads to the pypi mirror.
     """
     debug("devpiserver_on_upload called")
-    debug("projectname=%s, version=%s, link=%s" % (projectname, version, link))
+    debug("project=%s, version=%s, link=%s" % (project, version, link))
     if ("rss_active" in stage.ixconfig) and (stage.ixconfig["rss_active"] in [False, "False"]):
         debug("rss not active for this index")
         return
@@ -116,7 +116,7 @@ def devpiserver_on_upload(stage, projectname, version, link):
                              lastBuildDate=datetime.datetime.now())
 
     # apply some kinda max description text size
-    _description = description.get_description(stage, projectname, version)
+    _description = description.get_description(stage, project, version)
     if stage.xom.config.args.rss_truncate_desc:
         if _description.count("\n") > 32:
             debug("reducing amount of lines (%s)" % _description.count("\n"))
@@ -130,10 +130,10 @@ def devpiserver_on_upload(stage, projectname, version, link):
         rss.items.pop()
 
     rss.items.insert(0, PyRSS2Gen.RSSItem(
-        title="%s %s" % (projectname, version),
-        link="%s/%s/%s" % (index_url, projectname, version),
+        title="%s %s" % (project, version),
+        link="%s/%s/%s" % (index_url, project, version),
         description=_description,
-        guid=PyRSS2Gen.Guid("%s/%s/%s" % (index_url, projectname, version)),
+        guid=PyRSS2Gen.Guid("%s/%s/%s" % (index_url, project, version)),
         pubDate=datetime.datetime.now()))
 
     if not server_rss_dir.exists():
