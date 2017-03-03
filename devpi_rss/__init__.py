@@ -141,7 +141,7 @@ def devpiserver_on_upload(stage, project, version, link):
         server_rss_dir.mkdir()
 
     debug("writing xml file: %s" % xml_file.strpath)
-    rss.write_xml(open(xml_file.strpath, "w"), encoding="utf8")
+    rss.write_xml(open(xml_file.strpath, "w"), encoding="utf-8")
 
     with open(pickle_file.strpath, "w") as f:
         debug("writing pickle file: %s" % pickle_file.strpath)
