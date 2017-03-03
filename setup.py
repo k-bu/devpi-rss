@@ -7,7 +7,7 @@ setup(
     long_description=open("README.rst").read() + '\n\n' + open("HISTORY.rst").read(),
 
     author="k-bu",
-    author_email="-",
+    author_email="k-bu@email.com",
     url="https://github.com/k-bu/devpi-rss",
     license="MIT",
     classifiers=[
