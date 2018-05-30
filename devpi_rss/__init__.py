@@ -11,8 +11,11 @@ import datetime
 import pickle
 from pkg_resources import resource_filename
 import PyRSS2Gen
-from StringIO import StringIO
-
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+    
 from devpi_server.log import threadlog
 from devpi_web import description
 
