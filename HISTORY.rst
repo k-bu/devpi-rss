@@ -1,3 +1,8 @@
+1.0.9
+-----
+
+- fix for python3.4 (thx to kelnmaari)
+
 1.0.8
 -----
 
